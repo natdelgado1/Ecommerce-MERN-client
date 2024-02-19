@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 
 const Descripcion = ({ product }) => {
   const [talla, setTalla] = useState(undefined);
+  const [cantidad, setCantidad] = useState(1);
   const { cart, addToCart, removeFromCart, calculateTotal } = useContext(CartContext);
 
 
@@ -18,12 +19,16 @@ const Descripcion = ({ product }) => {
   }
 
   function add(){
-    const detail ={
-      _id: product._id,
-      price: product.price,
+    if(talla){
+      const detail ={
+        _id: product._id,
+        price: product.price
+      }
+      addToCart(detail, talla,Number.parseInt(cantidad));
+      setCantidad(1)
+    }else{
+      alert("Seleccione una talla...")
     }
-    addToCart(detail, talla)
-    console.log(cart);
   }
   
   
@@ -74,6 +79,8 @@ const Descripcion = ({ product }) => {
           </button>
           <input
             type="number"
+            value={cantidad}
+            onChange={(e) => {setCantidad(e.target.value)}}
             className="bg-gray-100 px-2 w-[70px] text-center"
           />
           <button

@@ -15,7 +15,6 @@ export default function ProductPage(){
             const response = await axios.get(`${apiUrl}/products/${id}`);
             const result = await response.data
             setProduct(result);
-            console.log(result);
         } catch (error) {
             console.log(error);
         }
