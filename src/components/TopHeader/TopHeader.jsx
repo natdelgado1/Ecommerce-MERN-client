@@ -2,12 +2,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faUser, faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link";
-import { useContext, useEffect } from "react";
-import { CartContext } from "@/contexts/CartContext";
+import {  useEffect } from "react";
+import {  useCart } from "@/contexts/CartContext";
 
 const TopHeader = () => {
 
-  const { cart, calculateTotalCount } = useContext(CartContext);
+  const { cart, calculateTotalCount } = useCart()
   
 useEffect(() => {
 },[cart, calculateTotalCount])

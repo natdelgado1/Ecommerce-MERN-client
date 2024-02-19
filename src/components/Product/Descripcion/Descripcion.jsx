@@ -1,13 +1,12 @@
-import { CartContext } from "@/contexts/CartContext";
+import { useCart } from "@/contexts/CartContext";
 import { faRefresh, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 
 const Descripcion = ({ product }) => {
   const [talla, setTalla] = useState(undefined);
   const [cantidad, setCantidad] = useState(1);
-  const { cart, addToCart, removeFromCart, calculateTotal } =
-    useContext(CartContext);
+  const { cart, addToCart, removeFromCart, calculateTotal } = useCart()
 
   function format(num) {
     return (
