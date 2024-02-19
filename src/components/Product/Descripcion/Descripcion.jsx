@@ -18,11 +18,11 @@ const Descripcion = ({ product }) => {
   }
 
   function add(){
-    const detail = {
+    const detail ={
       _id: product._id,
-      price: product.price
+      price: product.price,
     }
-    addToCart(product._id)
+    addToCart(detail, talla)
     console.log(cart);
   }
   
@@ -36,7 +36,7 @@ const Descripcion = ({ product }) => {
       <div className="flex gap-1">
         {product?.colors?.map((color, index) => {
           return (
-            <span className="bg-gray-50 border-[2px] border-solid border-gray-600 px-1 text-sm flex items-center justify-center">
+            <span key={index} className="bg-gray-50 border-[2px] border-solid border-gray-600 px-1 text-sm flex items-center justify-center">
               {color.toUpperCase()}
             </span>
           );
@@ -73,7 +73,6 @@ const Descripcion = ({ product }) => {
             -
           </button>
           <input
-          value="0"
             type="number"
             className="bg-gray-100 px-2 w-[70px] text-center"
           />
