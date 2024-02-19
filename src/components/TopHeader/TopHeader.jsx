@@ -2,10 +2,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import {  useEffect } from "react";
-import {  useCart } from "@/contexts/CartContext";
+import { useEffect } from "react";
+import { useCart } from "@/contexts/CartContext";
 
 const TopHeader = () => {
+  const { cart, calculateTotalCount } = useCart();
+
   return (
     <div className=" flex flex-col items-center bg-[#333333]  ">
       <div className="flex items-center p-3 px-[30px] w-full">
@@ -24,7 +26,7 @@ const TopHeader = () => {
           </Link>
           <button className="relative">
             <span className="absolute top-[-18px] right-[-11px] rounded-full bg-white h-[16px] w-[16px] flex items-center justify-center text-sm font-bold text-[#d7a9a9]">
-              2
+              {calculateTotalCount()}
             </span>
             <FontAwesomeIcon
               className="text-white"
