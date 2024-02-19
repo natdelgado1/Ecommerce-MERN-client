@@ -1,13 +1,13 @@
 import { CartContext } from "@/contexts/CartContext";
 import { faRefresh, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Descripcion = ({ product }) => {
   const [talla, setTalla] = useState(undefined);
   const [cantidad, setCantidad] = useState(1);
-  const { cart, addToCart, removeFromCart, calculateTotal } = useContext(CartContext);
-
+  const { cart, addToCart, removeFromCart, calculateTotal } =
+    useContext(CartContext);
 
   function format(num) {
     return (
@@ -18,20 +18,25 @@ const Descripcion = ({ product }) => {
     );
   }
 
-  function add(){
-    if(talla){
-      const detail ={
+  function add() {
+    if (talla) {
+      const detail = {
         _id: product._id,
-        price: product.price
-      }
-      addToCart(detail, talla,Number.parseInt(cantidad));
-      setCantidad(1)
-    }else{
-      alert("Seleccione una talla...")
+        price: product.price,
+      };
+      addToCart(detail, talla, Number.parseInt(cantidad));
+      setCantidad(1);
+    } else {
+      alert("Seleccione una talla...");
     }
   }
-  
-  
+
+  useEffect(() => {
+    if (cantidad === 0) {
+      setCantidad(1);
+    }
+  }, [cantidad]);
+
   return product._id ? (
     <div className="flex flex-col">
       <div className="flex flex-col gap-4">
@@ -41,7 +46,10 @@ const Descripcion = ({ product }) => {
       <div className="flex gap-1">
         {product?.colors?.map((color, index) => {
           return (
-            <span key={index} className="bg-gray-50 border-[2px] border-solid border-gray-600 px-1 text-sm flex items-center justify-center">
+            <span
+              key={index}
+              className="bg-gray-50 border-[2px] border-solid border-gray-600 px-1 text-sm flex items-center justify-center"
+            >
               {color.toUpperCase()}
             </span>
           );
@@ -80,17 +88,25 @@ const Descripcion = ({ product }) => {
           <input
             type="number"
             value={cantidad}
-            onChange={(e) => {setCantidad(e.target.value)}}
+            onChange={(e) => {
+              setCantidad(e.target.value);
+            }}
             className="bg-gray-100 px-2 w-[70px] text-center"
           />
           <button
             className="bg-gray-100 px-2"
+            onClick={(e) => {
+              setCantidad(cantidad + 1);
+            }}
           >
             +
           </button>
         </div>
 
-        <button className="bg-[#333333] text-white py-2 px-4" onClick={()=> add()}>
+        <button
+          className="bg-[#333333] text-white py-2 px-4"
+          onClick={() => add()}
+        >
           <FontAwesomeIcon className="mr-2" icon={faCartPlus} />
           Agregar al carrito
         </button>
@@ -105,10 +121,12 @@ const Descripcion = ({ product }) => {
       </div>
       <div>
         <div className="flex flex-col text-lg pt-3">
-        <span className="text-[#003366] font-bold ">HORMA GRANDE</span>
+          <span className="text-[#003366] font-bold ">HORMA GRANDE</span>
         </div>
-        <div className="py-4"> 
-        <span className="text-lg  font-bold pb-4">CONSULTE TABLA DE MEDIDAS</span>
+        <div className="py-4">
+          <span className="text-lg  font-bold pb-4">
+            CONSULTE TABLA DE MEDIDAS
+          </span>
           <div>
             <span>34___</span>
             <span>22,5 CM</span>
