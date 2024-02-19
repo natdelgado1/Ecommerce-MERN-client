@@ -96,6 +96,38 @@ const Descripcion = ({ product }) => {
         <p className="font-bold text-xl mb-2">Descripción</p>
         {product.description}
       </div>
+      <div>
+        <div className="flex flex-col text-lg pt-3">
+        <span className="text-[#003366] font-bold ">HORMA GRANDE</span>
+        </div>
+        <div className="py-4"> 
+        <span className="text-lg  font-bold pb-4">CONSULTE TABLA DE MEDIDAS</span>
+          <div>
+            <span>34___</span>
+            <span>22,5 CM</span>
+          </div>
+          <div>
+            <span>35___</span>
+            <span>23,5 CM</span>
+          </div>
+          <div>
+            <span>36___</span>
+            <span>24,0 CM</span>
+          </div>
+          <div>
+            <span>37___</span>
+            <span>25,0 CM</span>
+          </div>
+          <div>
+            <span>38___</span>
+            <span>25,5 CM</span>
+          </div>
+          <div>
+            <span>39___</span>
+            <span>26,0 CM</span>
+          </div>
+        </div>
+      </div>
     </div>
   ) : (
     <div>
