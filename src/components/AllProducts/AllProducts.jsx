@@ -26,11 +26,11 @@ const AllProducts = ( {title}) => {
     return(
             <div>
                 <p className="p-3 text-4xl py-5 font-bold tracking-wider">{title}</p>
-                <div className="w-full w-[100%]  justify-start">
+                <div className="w-full  justify-start">
                 {
                     products.map((product, index) => {
                         return (
-                            <ProductCard product={product}/>
+                            <ProductCard key={index} product={product}/>
                         )
                     })
                 }
