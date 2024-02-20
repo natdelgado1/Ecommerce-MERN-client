@@ -17,6 +17,8 @@ export default function StorePage() {
   const router = useRouter();
   const [marcas, setMarcas] = useState({});
 
+  
+
    const getMarcas = async ()=>{
     try {
         const response = await axios.get(`${apiUrl}/products/${marca}`);

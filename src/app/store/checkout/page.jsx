@@ -7,61 +7,23 @@ import { faChevronRight, faClock, faPlus, faTrash } from "@fortawesome/free-soli
 import { useCart } from "@/contexts/CartContext";
 
 const CheckoutPage = () => {
-  const { addToCart } = useCart();
+  const { cart, addToCart, calculateTotal, calculateTotalCount,removeFromCart } = useCart();
 
   function format(num) {
-    return (
-      "Gs. " +
-      Number.parseInt(num)
-        .toFixed(0)
-        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-    );
+    if(num){
+
+        return (
+          "Gs. " +
+          Number.parseInt(num)
+            .toFixed(0)
+            .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+        );
+    }else{
+        return "Gs. 0"
+    }
   }
 
-  const cart = [
-    {
-      _id: "65d1dc0e6c6ca2453aa3b5a6",
-      price: 110000,
-      title: "Nike Dunk Pro Infantil",
-      talla: 31,
-      quantity: 3,
-    },
-    {
-      _id: "65d1dc0e6c6ca2453aa3b5a6",
-      price: 110000,
-      title: "Nike Dunk Pro Infantil",
-      talla: 27,
-      quantity: 3,
-    },
-    {
-      _id: "65d1d5ca6c6ca2453aa3b57e",
-      price: 145000,
-      title: "Converse Plataforma",
-      talla: 37,
-      quantity: 2,
-    },
-    {
-      _id: "65d1d5ca6c6ca2453aa3b57e",
-      price: 145000,
-      title: "Converse Plataforma",
-      talla: 38,
-      quantity: 3,
-    },
-    {
-      _id: "65d1d3c46c6ca2453aa3b576",
-      price: 155000,
-      title: "Nike Dunk Low Pro",
-      talla: 38,
-      quantity: 1,
-    },
-    {
-      _id: "65d1d3c46c6ca2453aa3b576",
-      price: 155000,
-      title: "Nike Dunk Low Pro",
-      talla: 34,
-      quantity: 2,
-    },
-  ];
+
 
   const addItem = (item) => {
     addToCart(item, item.talla, 1);
@@ -72,7 +34,8 @@ const CheckoutPage = () => {
   }, [cart]);
 
   return (
-    <div className="w-full p-4">
+    cart.length > 0 ?
+    (<div className="w-full p-4">
       <h1 className="text-2xl font-bold text-center py-8">Confirmar pedido</h1>
 
       <div className="flex justify-evenly">
@@ -169,7 +132,9 @@ const CheckoutPage = () => {
                       {format(item.price)}
                     </p>
                     <div className="flex gap-2">
-                      <button className=" border-2 border-gray-400 w-6 h-6 rounded-md">
+                      <button className=" border-2 border-gray-400 w-6 h-6 rounded-md"
+                      onClick={(e) => {removeFromCart(item._id,item.talla)}}
+                      >
                         <FontAwesomeIcon color="red" icon={faTrash} />
                       </button>
                       <button className="bg-[#333333] w-6 h-6 rounded-md">
@@ -190,16 +155,16 @@ const CheckoutPage = () => {
           <div className="mt-8 flex flex-col gap-2 w-[50%]">
             <p className="font-bold text-xl">Resumen</p>
             <div className="flex justify-between font-bold ">
-                <span>Productos ({cart.length})</span>
-                <span>{format(cart[0].price)}</span>
+                <span>Productos ({calculateTotalCount()})</span>
+                <span>{format(calculateTotal())}</span>
             </div>
             <div className="flex justify-between">
                 <span>Envío</span>
-                <span>{format((cart[0].price*0.1958)+cart[0].price)}</span>
+                <span>{format(calculateTotal()+25000)}</span>
             </div>
             <div className="flex justify-between font-bold ">
                 <span className="text-lg">Total sin envío</span>
-                <span className="text-lg">{format(cart[0].price)}</span>
+                <span className="text-lg">{format(calculateTotal() )}</span>
             </div>
           </div>
           <div className="mt-4 w-[80%]">
@@ -213,6 +178,11 @@ const CheckoutPage = () => {
           </div>
         </div>
       </div>
+    </div>)
+    : 
+    <div className="p-12 text-center text-lg flex flex-col justify-center items-center">
+        <p>No hay items en tu carrito</p>
+        <p className="mt-4 bg-[#666666] text-white p-4 w-max "><Link className="font-bold text-2xl " href={'/store'}>¡Ir de compras! <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon></Link></p>
     </div>
   );
 };

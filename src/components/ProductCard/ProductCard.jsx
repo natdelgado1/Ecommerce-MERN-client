@@ -3,6 +3,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function ProductCard({ product }) {
+
+
+
+  
+  function format(num) {
+    return (
+      "Gs. " +
+      Number.parseInt(num)
+        .toFixed(0)
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    );
+  }
+
     const router = useRouter();
     const loadProduct = (id)=>{
         router.push(`/store/products/${id}`)
@@ -18,7 +31,7 @@ export default function ProductCard({ product }) {
       </div>
       <div className="p-3">
       <p>{product.title}</p>
-      <span className="font-bold">Gs {product.price}</span>
+      <span className="font-bold">{format(product.price)}</span>
       </div>
     </div>
   );
