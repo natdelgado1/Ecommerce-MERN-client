@@ -21,6 +21,7 @@ export const CartProvider = ({ children }) => {
     const detail = {
       _id: product._id,
       price: product.price,
+      title: product.title,
       talla: talla,
     };
 

@@ -22,6 +22,7 @@ const Descripcion = ({ product }) => {
       const detail = {
         _id: product._id,
         price: product.price,
+        title: product.title
       };
       addToCart(detail, talla, Number.parseInt(cantidad));
       setCantidad(1);
