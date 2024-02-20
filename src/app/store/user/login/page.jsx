@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("adriangrahlmaciel@gmail.com");
-  const [password, setPassword] = useState("RaptorX13061999");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loginErrors, setLoginErrors] = useState({});
 
   const {user, login, logout} = useUser();
