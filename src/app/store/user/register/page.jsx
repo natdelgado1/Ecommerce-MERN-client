@@ -33,7 +33,7 @@ const registerUser = () => {
             const response = await axios.post(`${apiUrl}/user`, user);
             const result = response.data;
             console.log(result);
-            router.push(`/store/user/mi-cuenta`);
+            router.push(`/store/user/login`);
         } catch (error) {
           console.log(error);
             setLoginErrors(error.response.data.errors);

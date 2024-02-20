@@ -1,19 +1,21 @@
 "use client";
-import { login } from "@/services/auth.service";
+import { login } from "@/app/api/login";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("adriangrahlmaciel@gmail.com");
+  const [password, setPassword] = useState("RaptorX13061999");
   const [loginErrors, setLoginErrors] = useState({});
 
   const onSubmit = async (event) => {
     event.preventDefault();
-   
-    const response= await login(email,password);    
-    console.log(response);
+
+    
+    const success = await login({email,password});
+
+
     setEmail("");
     setPassword("");
   };
@@ -77,7 +79,6 @@ const Login = () => {
                   <button
                     className="bg-zinc-900 text-white h-10 text-xl"
                     type="submit"
-
                   >
                     Iniciar Sesión
                   </button>
