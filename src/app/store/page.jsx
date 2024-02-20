@@ -19,21 +19,7 @@ export default function StorePage() {
 
   
 
-   const getMarcas = async ()=>{
-    try {
-        const response = await axios.get(`${apiUrl}/products/${marca}`);
-        const result = await response.data;
-        setMarcas(result);
-        console.log(result);
-      } catch (error) {
-        console.log(error);
-      }
-   }
    
-   useEffect(()=>{
-    getMarcas();
-   });
-  
  
 
   return (

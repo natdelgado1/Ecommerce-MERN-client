@@ -4,9 +4,14 @@ import { faUser, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useRouter } from "next/navigation";
 
 const TopHeader = () => {
   const { cart, calculateTotalCount } = useCart();
+  const router = useRouter();
+  const goToCheckout = () =>{
+    router.push('/store/checkout')
+  }
 
   return (
     <div className=" flex flex-col items-center bg-[#333333]  ">
@@ -24,8 +29,8 @@ const TopHeader = () => {
               icon={faUser}
             ></FontAwesomeIcon>
           </Link>
-          <button className="relative">
-            <span className="absolute top-[-18px] right-[-11px] rounded-full bg-white h-[16px] w-[16px] flex items-center justify-center text-sm font-bold text-[#d7a9a9]">
+          <button className="relative" onClick={(e) => {goToCheckout()}}>
+            <span  className="absolute top-[-18px] right-[-11px] rounded-full bg-white h-[16px] w-[16px] flex items-center justify-center text-sm font-bold text-[#d7a9a9]">
               {calculateTotalCount()}
             </span>
             <FontAwesomeIcon

@@ -29,7 +29,7 @@ export default function PanelLanzamientos(){
                 {
                     products.map((product, index) => {
                         return (
-                            <ProductCard product={product}/>
+                            <ProductCard key={index} product={product}/>
                         )
                     })
                 }
