@@ -7,7 +7,7 @@ import {faLock, faRotateRight, faTruck} from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import PanelDesplazamiento from "@/components/PanelDesplazamiento/PanelDesplazamiento";
-import CardMarcas from "@/components/CardMarcas/CardMarcas";
+import CardMarca from "@/components/CardMarca/CardMarca";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -86,13 +86,20 @@ export default function StorePage() {
         </div>
       </div>
         <PanelDesplazamiento/>
-        {/* {
-                    marcas.map((product, index) => {
-                        return (
-                            <CardMarcas product={product}/>
-                        )
-                    })
-                } */}
+        <div className="mt-4">
+
+        <div className=" flex justify-center">
+        <h1 className="text-2xl font-bold">Escoja su marca</h1>
+      </div>
+        <div className="grid grid-cols-3 gap-4 p-4">
+        <CardMarca marca={"converse"}/>
+        <CardMarca marca={"adidas"}/>
+        <CardMarca marca={"nike"}/>
+        <CardMarca marca={"puma"}/>
+        <CardMarca marca={"moleca"}/>
+        <CardMarca marca={"beira rio"}/>
+        </div>
+        </div>
 
          <div className="flex justify-center py-8">
           <Link href="/store/products">
