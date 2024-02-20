@@ -3,7 +3,8 @@ import FormUser from "@/components/FormUser/FormUser";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import axios  from "axios";
+import { apiUrl } from "@/config";
 
 
 const registerUser = () => {
@@ -22,20 +23,21 @@ const registerUser = () => {
       if (password === confirmPassword) {
           setPasswordConfirmed(true);
           const user = {
-          nombreCompleto: nombre,
-          email: email,
-          telefono: telefono,
-          password: password,
-          confirmPassword: confirmPassword,
+            nombreCompleto: nombre,
+            email: email,
+            telefono: telefono,
+            password: password,
+            confirmPassword: confirmPassword,
         };
         try {
             const response = await axios.post(`${apiUrl}/user`, user);
             const result = response.data;
             console.log(result);
+            router.push(`/store/user/mi-cuenta`);
         } catch (error) {
+          console.log(error);
             setLoginErrors(error.response.data.errors);
         }
-        router.push(`${store}/user/mi-cuenta`);
       } else {
           setPasswordConfirmed(false);
         }
