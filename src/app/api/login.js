@@ -6,15 +6,8 @@ export const login = async (credentials) => {
     const response = await axios.post(`${apiUrl}/session`, credentials);
 
     if (response.status === 200) {
-        const cookies = document.cookie.split(';'); // Access cookies from document.cookie
-  
-        for (const cookie of cookies) {
-          const [key, value] = cookie.trim().split('=');
-          if (key === 'accessToken') {
-            // Access token found
-            return value;
-          }
-        }
+       const data = await response.data;
+       return data;
       } else {
         throw new Error('Login failed');
       }

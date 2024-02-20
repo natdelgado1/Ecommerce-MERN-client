@@ -1,7 +1,8 @@
 "use client";
-import { login } from "@/app/api/login";
-import axios from "axios";
+import { login as LoginAuth } from "@/app/api/login";
+import { useUser } from "@/contexts/UserContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Login = () => {
@@ -9,12 +10,22 @@ const Login = () => {
   const [password, setPassword] = useState("RaptorX13061999");
   const [loginErrors, setLoginErrors] = useState({});
 
+  const {user, login, logout} = useUser();
+  const router =useRouter()
+
   const onSubmit = async (event) => {
     event.preventDefault();
-
+    const data = await LoginAuth({ email, password });
+    console.log(data);
+    if(data.user && data.accessToken){
+      const user = {
+        ...data.user,
+        accessToken: data.accessToken
+      };
+      login(data.user);
+      router.push('/store/user/mi-cuenta')
+    }
     
-    const success = await login({email,password});
-
 
     setEmail("");
     setPassword("");
