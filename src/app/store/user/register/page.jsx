@@ -36,7 +36,7 @@ const registerUser = () => {
             router.push(`/store/user/mi-cuenta`);
         } catch (error) {
           console.log(error);
-            // setLoginErrors(error.response.data.errors);
+            setLoginErrors(error.response.data.errors);
         }
       } else {
           setPasswordConfirmed(false);
