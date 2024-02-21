@@ -102,13 +102,25 @@ export default function FormUser({ onSubmitHandler, isRegister, nombre, email, t
             <button
               className="bg-zinc-900 text-white h-10 text-xl"
               type="submit"
-            >
-              Crear una cuenta
+            >{
+              isRegister? 
+              `Crear una cuenta`
+              :
+              `Guardar`
+            }             
             </button>
+            {
+              isRegister? 
+             (
             <span className="self-center">
               ¿Ya tienes acceso?.
               <Link href="/store/user/login"> Acceso</Link>
             </span>
+
+              )
+              :
+              null
+            }
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
-import { login as LoginAuth } from "@/app/api/login";
+import { apiUrl } from "@/config";
 import { useUser } from "@/contexts/UserContext";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -10,22 +11,27 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginErrors, setLoginErrors] = useState({});
 
-  const {user, login, logout} = useUser();
-  const router =useRouter()
+  const { user, login, logout } = useUser();
+  const router = useRouter();
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const data = await LoginAuth({ email, password });
-    console.log(data);
-    if(data.user && data.accessToken){
+    setLoginErrors({});
+    try {
+      
+      const response = await axios.post(`${apiUrl}/session`, {email,password});
+      const data = await response.data;
+
       const user = {
         ...data.user,
-        accessToken: data.accessToken
+        accessToken: data.accessToken,
       };
       login(data.user);
-      router.push('/store/user/mi-cuenta')
+      router.push("/store/user/mi-cuenta");
+    } catch (error) {
+      console.log(error);
+      setLoginErrors({password: 'Error de autenticación'});
     }
-    
 
     setEmail("");
     setPassword("");
@@ -34,8 +40,8 @@ const Login = () => {
     <div className="py-5 ps-20  bg-[#f9f4fa]">
       <div>
         <div>
-          <Link href="/store">Inicio</Link>
-          <Link href="/store/user/mi-cuenta">Mi cuenta</Link>
+          <Link href="/store">Inicio-</Link>
+          <Link href="/store/user/mi-cuenta">Mi cuenta-</Link>
           <Link href="/store/user/register">Registrarse</Link>
         </div>
         <div className="pt-3">
@@ -57,11 +63,11 @@ const Login = () => {
                         placeholder="por ejemplo tucorreo@gmail.com"
                         className="bg-[#f9f4fa] border border-zinc-900 mb-4 h-8 p-3"
                       />
-                      {loginErrors.emailError ? (
+                      {loginErrors?.email && (
                         <h1 className="border-l-2 bg-gray-300 border-l-red-700 px-2 py-1 mt-2">
-                          {loginErrors.emailError}
+                          {loginErrors.email}
                         </h1>
-                      ) : null}
+                      )}
                     </div>
                     <div className="flex flex-col">
                       <label>Contraseña</label>
@@ -75,11 +81,11 @@ const Login = () => {
                         placeholder="por ejemplo tu contraseña"
                         className="bg-[#f9f4fa]  border border-zinc-900  mb-4 h-8 p-3 "
                       />
-                      {loginErrors.pwdError ? (
+                      {loginErrors?.password && (
                         <h1 className="border-l-2 bg-gray-300 border-l-red-700 px-2 py-1 mt-2">
-                          {loginErrors.pwdError}
+                          {loginErrors.password}
                         </h1>
-                      ) : null}
+                      )}
                     </div>
                   </div>
                   <div className="flex justify-end">

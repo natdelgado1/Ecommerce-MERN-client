@@ -18,8 +18,7 @@ export default function StorePage() {
   const [marcas, setMarcas] = useState({});
 
   
-
-   
+ 
  
 
   return (
@@ -30,25 +29,25 @@ export default function StorePage() {
       <div className="w-full flex justify-center p-3">
         <ul className="flex gap-10 text-lg">
             <li className="text-center font-bold">
-                <Link href="/store/tenis">
+                <Link href="/store/categories/65c963770675d5d5ad5f2082">
                 <img className="h-32 "  src="tenis.jpg" alt="tenis" /> 
                 Tenis 
                 </Link>       
             </li>
             <li className="text-center font-bold">
-                <Link href="/store/sandalias">
+                <Link href="/store/categories/65d1cf4a6c6ca2453aa3b56">
                 <img className="h-32 "  src="/productos/sandalias.jpg" alt="sandalia" /> 
                 Sandalias 
                 </Link>       
             </li>
             <li className="text-center font-bold">
-                <Link href="/store/botas">
+                <Link href="/store/categories/65d1cf6e6c6ca2453aa3b571">
                 <img className="h-32 w-32"  src="/productos/bota.jpg" alt="bota" /> 
                 Botas 
                 </Link>       
             </li>
             <li className="text-center font-bold">
-                <Link href="/store/infantil">
+                <Link href="/store/categories/65d1cf776c6ca2453aa3b573">
                 <img className="h-32 "  src="/productos/infantil.jpg" alt="infantil" /> 
                 Infantil
                 </Link>       
@@ -92,12 +91,12 @@ export default function StorePage() {
         <h1 className="text-2xl font-bold">Escoja su marca</h1>
       </div>
         <div className="grid grid-cols-3 gap-4 p-4">
-        <CardMarca marca={"converse"}/>
-        <CardMarca marca={"adidas"}/>
-        <CardMarca marca={"nike"}/>
-        <CardMarca marca={"puma"}/>
-        <CardMarca marca={"moleca"}/>
-        <CardMarca marca={"beira rio"}/>
+        <CardMarca marca={"Converse"}/>
+        <CardMarca marca={"Adidas"}/>
+        <CardMarca marca={"Nike"}/>
+        <CardMarca marca={"Puma"}/>
+        <CardMarca marca={"Moleca"}/>
+        <CardMarca marca={"Beira rio"}/>
         </div>
         </div>
 

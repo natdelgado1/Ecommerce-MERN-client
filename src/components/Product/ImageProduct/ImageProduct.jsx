@@ -18,13 +18,13 @@ const ImageProduct = ( {product} ) => {
                     src={`${imagesURL}/products/${product._id}/1.jpg`}
                     alt={`Imagen de ${product.title}`}/>
                 <img 
-                    src={`${imagesURL}/products/${product._id}/1.jpg`}
+                    src={`${imagesURL}/products/${product._id}/2.jpg`}
                     alt={`Imagen de ${product.title}`}/>
                 <img 
-                    src={`${imagesURL}/products/${product._id}/1.jpg`}
+                    src={`${imagesURL}/products/${product._id}/3.jpg`}
                     alt={`Imagen de ${product.title}`}/>
                 <img 
-                    src={`${imagesURL}/products/${product._id}/1.jpg`}
+                    src={`${imagesURL}/products/${product._id}/4.jpg`}
                     alt={`Imagen de ${product.title}`}/>
         
                 

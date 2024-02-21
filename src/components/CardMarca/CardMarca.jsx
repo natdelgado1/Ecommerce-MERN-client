@@ -1,20 +1,25 @@
 "use client"
 import {  imagesURL } from "@/config";
-import Link from "next/navigation";
-import { useRouter } from "next/router";
+import Link, { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
 const CardMarca = ({marca}) => {
+    const router = useRouter();
     
+    const MarcaPage = () =>{
+        router.push(`/store/marcas/${marca}`)
+    }
+     
 
    
     return(
         <div >
-            <div>
+            <div onClick={() => MarcaPage()}>
             <img  className="border-2 border-black rounded-md"
-                    src={`${imagesURL}/marcas/${marca}.png`} 
-                    alt={`${marca}`} />
+                    src={`${imagesURL}/marcas/${marca.toLowerCase()}.png`} 
+                    alt={`${marca}`} 
+                    />
                 
             </div>
         </div>
